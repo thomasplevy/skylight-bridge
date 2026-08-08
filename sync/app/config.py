@@ -42,7 +42,6 @@ def load_settings() -> Settings:
     pairs = (
         ("groceries", "KEEP_LIST_GROCERIES", "SKYLIGHT_LIST_GROCERIES", "Groceries"),
         ("sams", "KEEP_LIST_SAMS", "SKYLIGHT_LIST_SAMS", "Sam's Club"),
-        ("todo", "KEEP_LIST_TODO", "SKYLIGHT_LIST_TODO", "Todo"),
         ("home_depot", "KEEP_LIST_HOME_DEPOT", "SKYLIGHT_LIST_HOME_DEPOT", "Home Depot"),
     )
     mappings: list[ListMapping] = []
@@ -56,7 +55,7 @@ def load_settings() -> Settings:
     if not mappings:
         raise RuntimeError(
             "No list mappings configured. Set at least one of "
-            "SKYLIGHT_LIST_GROCERIES, SKYLIGHT_LIST_SAMS, SKYLIGHT_LIST_TODO, "
+            "SKYLIGHT_LIST_GROCERIES, SKYLIGHT_LIST_SAMS, "
             "SKYLIGHT_LIST_HOME_DEPOT"
         )
 
