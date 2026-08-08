@@ -1,0 +1,9 @@
+.venv/
+sync/.venv/
+sync/.data/
+__pycache__/
+*.pyc
+.env
+.dev.vars
+*.log
+.DS_Store

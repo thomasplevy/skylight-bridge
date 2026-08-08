@@ -1,0 +1,37 @@
+name: Sync Keep → Skylight
+
+on:
+  schedule:
+    # 4× daily UTC (02:00, 08:00, 14:00, 20:00)
+    - cron: "0 2,8,14,20 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger Fly sync
+        env:
+          FLY_SYNC_URL: ${{ secrets.FLY_SYNC_URL }}
+          SYNC_SECRET: ${{ secrets.SYNC_SECRET }}
+        run: |
+          set -euo pipefail
+          if [ -z "${FLY_SYNC_URL:-}" ] || [ -z "${SYNC_SECRET:-}" ]; then
+            echo "Missing FLY_SYNC_URL or SYNC_SECRET repo secrets" >&2
+            exit 1
+          fi
+          url="${FLY_SYNC_URL%/}/sync"
+          code=$(curl -sS -X POST "$url" \
+            -H "Authorization: Bearer ${SYNC_SECRET}" \
+            -H "Accept: application/json" \
+            --max-time 120 \
+            -o /tmp/sync-result.json \
+            -w "%{http_code}")
+          echo "HTTP ${code}"
+          cat /tmp/sync-result.json
+          echo
+          if [ "$code" -lt 200 ] || [ "$code" -ge 300 ]; then
+            exit 1
+          fi
+          python3 -c 'import json,sys; r=json.load(open("/tmp/sync-result.json")); sys.exit(0 if r.get("ok") else 1)'
