@@ -75,24 +75,17 @@ Follow current [gpsoauth](https://github.com/simon-weber/gpsoauth) instructions 
 ```bash
 cd sync
 fly apps create skylight-keep-sync   # if name free; else edit fly.toml app =
-fly volumes create data --region phx --size 1
+fly volumes create data --region ord --size 1
 
-fly secrets set \
-  SYNC_SECRET='long-random-string' \
-  GOOGLE_EMAIL='you@gmail.com' \
-  GOOGLE_MASTER_TOKEN='…' \
-  SKYLIGHT_REFRESH_TOKEN='…' \
-  SKYLIGHT_FRAME_ID='…' \
-  SKYLIGHT_LIST_GROCERIES='…' \
-  SKYLIGHT_LIST_SAMS='…' \
-  SKYLIGHT_LIST_TODO='…' \
-  SKYLIGHT_LIST_HOME_DEPOT='…'
+# Put secrets in repo-root .env (gitignored), then:
+./set-fly-secrets.sh
+# or from repo root: ./sync/set-fly-secrets.sh
 
-# Optional Keep title overrides (defaults shown):
-# KEEP_LIST_GROCERIES='Groceries'
-# KEEP_LIST_SAMS="Sam's Club"
-# KEEP_LIST_TODO='Todo'
-# KEEP_LIST_HOME_DEPOT='Home Depot'
+# Required keys in .env:
+#   SYNC_SECRET, GOOGLE_EMAIL, GOOGLE_MASTER_TOKEN, SKYLIGHT_REFRESH_TOKEN,
+#   SKYLIGHT_FRAME_ID, SKYLIGHT_LIST_GROCERIES, SKYLIGHT_LIST_SAMS,
+#   SKYLIGHT_LIST_TODO, SKYLIGHT_LIST_HOME_DEPOT
+# Optional: KEEP_LIST_* title overrides
 
 fly deploy
 ```

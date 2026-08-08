@@ -3,7 +3,7 @@
 # Secrets: see README
 
 app = "skylight-keep-sync"
-primary_region = "phx"
+primary_region = "ord"
 
 [build]
 
