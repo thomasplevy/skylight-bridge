@@ -1,8 +1,8 @@
-name: Sync Keep → Skylight
+name: Sync Keep to Skylight
 
 on:
   schedule:
-    # 4× daily UTC (02:00, 08:00, 14:00, 20:00)
+    # 4x daily UTC (02:00, 08:00, 14:00, 20:00)
     - cron: "0 2,8,14,20 * * *"
   workflow_dispatch:
 
