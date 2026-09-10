@@ -26,6 +26,7 @@ Create these lists in Google Keep (titles must match, or override via env):
 | `Groceries` | `SKYLIGHT_LIST_GROCERIES`  |
 | `Sam's Club`| `SKYLIGHT_LIST_SAMS`       |
 | `Home Depot`| `SKYLIGHT_LIST_HOME_DEPOT` |
+| `General`   | `SKYLIGHT_LIST_GENERAL`    |
 
 Set Keep as your Assistant notes provider so Nest can add items:
 
@@ -35,6 +36,7 @@ Voice examples:
 
 - “Hey Google, add milk to my Groceries list”
 - “Hey Google, add paper towels to my Sam's Club list”
+- “Hey Google, add batteries to my General list”
 
 Then sync (scheduled or voice) to push into Skylight.
 
@@ -83,7 +85,7 @@ fly volumes create data --region ord --size 1
 # Required keys in .env:
 #   SYNC_SECRET, GOOGLE_EMAIL, GOOGLE_MASTER_TOKEN, SKYLIGHT_REFRESH_TOKEN,
 #   SKYLIGHT_FRAME_ID, SKYLIGHT_LIST_GROCERIES, SKYLIGHT_LIST_SAMS,
-#   SKYLIGHT_LIST_HOME_DEPOT
+#   SKYLIGHT_LIST_HOME_DEPOT, SKYLIGHT_LIST_GENERAL
 # Optional: KEEP_LIST_* title overrides
 
 fly deploy

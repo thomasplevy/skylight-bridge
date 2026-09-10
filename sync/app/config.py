@@ -43,6 +43,7 @@ def load_settings() -> Settings:
         ("groceries", "KEEP_LIST_GROCERIES", "SKYLIGHT_LIST_GROCERIES", "Groceries"),
         ("sams", "KEEP_LIST_SAMS", "SKYLIGHT_LIST_SAMS", "Sam's Club"),
         ("home_depot", "KEEP_LIST_HOME_DEPOT", "SKYLIGHT_LIST_HOME_DEPOT", "Home Depot"),
+        ("general", "KEEP_LIST_GENERAL", "SKYLIGHT_LIST_GENERAL", "General"),
     )
     mappings: list[ListMapping] = []
     for key, keep_env, sky_env, default_title in pairs:
@@ -56,7 +57,7 @@ def load_settings() -> Settings:
         raise RuntimeError(
             "No list mappings configured. Set at least one of "
             "SKYLIGHT_LIST_GROCERIES, SKYLIGHT_LIST_SAMS, "
-            "SKYLIGHT_LIST_HOME_DEPOT"
+            "SKYLIGHT_LIST_HOME_DEPOT, SKYLIGHT_LIST_GENERAL"
         )
 
     data_dir = Path(os.environ.get("DATA_DIR", "/data"))
