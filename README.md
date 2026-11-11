@@ -114,7 +114,9 @@ Repo secrets:
 Workflow: [`.github/workflows/sync-lists.yml`](.github/workflows/sync-lists.yml)
 
 - Schedule: `0 2,8,14,20 * * *` (UTC)
-- Manual: Actions → **Sync Keep → Skylight** → Run workflow
+- Manual: Actions → **Sync Keep to Skylight** → Run workflow
+
+Keepalive: [`.github/workflows/keepalive.yml`](.github/workflows/keepalive.yml) re-enables both scheduled workflows via the GitHub API on the 1st of each month so GitHub does not auto-disable them after 60 days of public-repo inactivity. No dummy commits.
 
 ## IFTTT on-demand voice
 
